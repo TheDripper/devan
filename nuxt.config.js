@@ -3,9 +3,9 @@ export default {
   target: "static",
 
   // Global page headers: https://go.nuxtjs.dev/config-head
-  // server: {
-  //   host: "0.0.0.0"
-  // },
+  server: {
+    host: "0.0.0.0"
+  },
   serverMiddleware: [
     { path: "/server-middleware", handler: "~/server-middleware/rest.js" },
   ],
@@ -60,9 +60,12 @@ export default {
     "@nuxtjs/proxy",
     "@nuxt/content"
   ],
-  proxy: [
-    'http://localhost:9009/wp-json'
-  ],
+  proxy: {
+    "/wp-json": {
+      target: "http://localhost:9009",
+      changeOrigin: true
+    }
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
