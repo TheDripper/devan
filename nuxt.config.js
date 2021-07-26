@@ -42,7 +42,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
-    "tailwindcss",
+    "@nuxtjs/tailwindcss",
     "@nuxtjs/google-fonts",
     "~/modules/class-purge.js"
   ],
@@ -67,7 +67,9 @@ export default {
     }
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    proxy: true
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}

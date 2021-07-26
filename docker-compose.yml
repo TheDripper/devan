@@ -1,17 +1,17 @@
-version: "3"
+version: "3.2"
 
 services:
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - "8080:8080"
 
   db:
     image: mysql:latest
     platform: linux/amd64
     ports:
-      - 3306:3306
+      - "3306:3306"
     volumes:
       - "./.data/db:/var/lib/mysql"
     restart: always
@@ -35,7 +35,10 @@ services:
     links:
       - db
     ports:
-      - "9009:9009"
+      - target: 80
+        published: 9009
+        protocol: tcp
+        mode: host
     restart: always
     environment:
       WORDPRESS_DB_HOST: db
@@ -52,7 +55,11 @@ services:
     image: scrape
     command: sh -c "sh ./run.sh"
     ports:
-      - 3000:3000
+      - target: 3000
+        published: 3000
+        protocol: tcp
+        mode: host
+
     volumes:
       - "./:/home"
       - "./run.sh:/home/run.sh"

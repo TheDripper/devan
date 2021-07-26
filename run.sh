@@ -11,7 +11,7 @@ export NVM_DIR="$HOME/.nvm"
 nvm install node
 nvm install 14
 nvm alias default 14
-npm install --loglevel verbose
+# npm install --loglevel verbose
 # npm run build
 # npm start --loglevel verbose
 npm run dev --loglevel verbose --max-old-space-size=8192

@@ -15,7 +15,8 @@ export const mutations = {
 };
 export const actions = {
    async getPage(context, id) {
-     const page = await this.$axios.$get('/server-middleware/page/'+id);
+    //  const page = await this.$axios.$get('/server-middleware/page/'+id);
+    //  const page = await this.$axios.$get("/wp-json/wp/v2/pages/"+id);
      return page
    },
   async nuxtServerInit({ commit }) {

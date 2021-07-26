@@ -1,7 +1,7 @@
 <template>
   <div id="root" class="flex">
     <div :class="classes"></div>
-    <div id="content" v-html="page.description" class="w-1/2"></div>
+    <div id="content" v-html="page.content.rendered" class=""></div>
   </div>
 </template>
 
@@ -10,17 +10,15 @@ import { mapActions } from "vuex";
 import $ from "jquery";
 export default {
   methods: {
-    ...mapActions(['getPage'])
+    ...mapActions(["getPage"]),
   },
-  data() {
-    return {
-      page: null
-    }
-  },
-  async fetch() {
+  async asyncData({$axios}) {
     try {
-      let { data } = await this.getPage(6);
-      this.page = data.pageFE 
+      // let data = await getPage(6);
+      const page = await $axios.$get("/wp-json/wp/v2/pages/6");
+      return {
+        page
+      }
     } catch (err) {
       console.log(err);
     }
@@ -56,6 +54,7 @@ export default {
 <style lang="scss">
 #content {
   overflow-x: hidden;
+  width: 100vw;
 }
 html,
 body {
@@ -154,7 +153,7 @@ ul {
       @apply absolute;
       top: 50%;
       right: 0;
-      transform: translate(110%,-38%);
+      transform: translate(110%, -38%);
       content: url("/Arrow.svg");
     }
   }
@@ -162,6 +161,11 @@ ul {
 .list-none {
   ul {
     list-style: none !important;
+  }
+}
+.wp-block-image {
+  img {
+    height: auto;
   }
 }
 </style>
