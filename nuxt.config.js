@@ -62,7 +62,7 @@ export default {
   ],
   proxy: {
     "/wp-json": {
-      target: "http://localhost:9009",
+      target: "http://localhost:9009/wp-json/wp/v2/pages/",
       changeOrigin: true
     }
   },

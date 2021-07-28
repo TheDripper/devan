@@ -35,10 +35,7 @@ services:
     links:
       - db
     ports:
-      - target: 80
-        published: 9009
-        protocol: tcp
-        mode: host
+      - "9009:80"
     restart: always
     environment:
       WORDPRESS_DB_HOST: db
@@ -52,14 +49,15 @@ services:
     depends_on:
       - wordpress
       - db
+    links:
+      - wordpress
+      - db
     image: scrape
     command: sh -c "sh ./run.sh"
+    expose:
+      - 3000
     ports:
-      - target: 3000
-        published: 3000
-        protocol: tcp
-        mode: host
-
+      - "3000:3000"
     volumes:
       - "./:/home"
       - "./run.sh:/home/run.sh"
