@@ -1,7 +1,9 @@
 <template>
-  <div id="root" class="flex">
+  <div id="root" class="">
     <div :class="classes"></div>
+    <div id="header" v-html="header.content.rendered" class=""></div>
     <div id="content" v-html="page.content.rendered" class=""></div>
+    <div id="footer" v-html="footer.content.rendered" class=""></div>
   </div>
 </template>
 
@@ -45,6 +47,12 @@ export default {
     // page() {
     //   return this.$store.state.posts[0];
     // },
+    header() {
+      return this.$store.state.header;
+    },
+    footer() {
+      return this.$store.state.footer;
+    },
     classes() {
       return this.$store.state.classes;
     },
