@@ -43,6 +43,7 @@ module.exports = {
         "8xl": "6rem",
         head: "50px",
         "sub-head": "30px",
+        "blog-head": "64px",
         body: "18px",
       },
       fontFamily: {

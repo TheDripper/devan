@@ -6,9 +6,9 @@ export default {
   server: {
     host: "0.0.0.0"
   },
-  serverMiddleware: [
-    { path: "/server-middleware", handler: "~/server-middleware/rest.js" },
-  ],
+  // serverMiddleware: [
+  //   { path: "/server-middleware", handler: "~/server-middleware/rest.js" },
+  // ],
   head: {
     title: "heydevan",
     htmlAttrs: {
@@ -61,9 +61,12 @@ export default {
     "@nuxt/content"
   ],
   proxy: {
-    "/wp-json": {
-      target: "http://localhost:9009/wp-json/wp/v2/pages/",
-      changeOrigin: true
+    "/api": {
+      target: "http://wordpress/wp-json/wp/v2",
+      changeOrigin: true,
+      pathRewrite: {
+        "^/api/":"/"
+      }
     }
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

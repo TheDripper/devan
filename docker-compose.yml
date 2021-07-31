@@ -10,11 +10,11 @@ services:
   db:
     image: mysql:latest
     platform: linux/amd64
-    ports:
-      - "3306:3306"
     volumes:
       - "./.data/db:/var/lib/mysql"
     restart: always
+    networks: 
+      - wp-net
     environment:
       MYSQL_ROOT_PASSWORD: wordpress
       MYSQL_DATABASE: wordpress
@@ -22,8 +22,8 @@ services:
       MYSQL_PASSWORD: wordpress
 
   wordpress:
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     image: wordpress:latest
     platform: linux/amd64
     volumes:
@@ -32,11 +32,11 @@ services:
       - "./wp-content/plugins:/var/www/html/wp-content/plugins"
       - "./wp-content/uploads:/var/www/html/wp-content/uploads"
       - "./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini"
-    links:
-      - db
-    ports:
-      - "9009:80"
+    networks: 
+      - wp-net
     restart: always
+    ports: 
+      - "9009:80"
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wordpress
@@ -46,21 +46,24 @@ services:
     build:
       dockerfile: Dockerfile
       context: .
-    depends_on:
-      - wordpress
-      - db
+    # depends_on:
+    #   - wordpress
+    #   - db
     links:
       - wordpress
-      - db
     image: scrape
     command: sh -c "sh ./run.sh"
-    expose:
-      - 3000
+    networks: 
+      - wp-net
     ports:
       - "3000:3000"
     volumes:
       - "./:/home"
       - "./run.sh:/home/run.sh"
+      
+networks:
+  wp-net:
+    driver: bridge
 
   # node:
   #   depends_on:
