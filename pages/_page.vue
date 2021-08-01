@@ -216,4 +216,13 @@ ul {
     margin: 0 auto !important;
   }
 }
+.text-block {
+  h2 {
+    color: black !important;
+    font-size: 64px;
+  }
+  p {
+    color: black !important;
+  }
+}
 </style>
