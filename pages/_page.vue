@@ -16,7 +16,7 @@ export default {
     try {
       // let data = await getPage(6);
       let id = route.params.page;
-      const page = await $axios.$get("/api/pages/"+id);
+      const page = await $axios.$get("/api/pages/" + id);
       return {
         page,
       };
@@ -83,7 +83,7 @@ h4 {
 p,
 a,
 li {
-  @apply font-body font-light;
+  @apply font-body font-light text-lg;
 }
 ul {
   list-style: circle;
@@ -179,7 +179,7 @@ ul {
     @apply text-blog-head;
   }
   p {
-	  @apply text-3xl;
+    @apply text-3xl;
   }
   &.__right {
     .wp-block-column {
@@ -190,6 +190,30 @@ ul {
     .wp-block-column {
       transform: translate(-100px);
     }
+  }
+}
+.testimonial {
+  @apply relative;
+  h2 {
+    color: black !important;
+    @apply absolute top-0;
+    left: calc(50% + 1.5rem);
+    font-size: 64px;
+    transform: translateY(-50%);
+  }
+  h4 {
+    color: black !important;
+    @apply text-2xl font-body absolute;
+    right: 10rem;
+    bottom: 12rem;
+  }
+  p {
+    color: black !important;
+  }
+  img {
+    width: auto !important;
+    height: auto !important;
+    margin: 0 auto !important;
   }
 }
 </style>
