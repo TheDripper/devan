@@ -224,5 +224,10 @@ ul {
   p {
     color: black !important;
   }
+  &.__black {
+    h2 {
+    color: white !important;
+    }
+  }
 }
 </style>

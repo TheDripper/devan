@@ -62,7 +62,7 @@ export default {
   ],
   proxy: {
     "/api": {
-      target: "http://wordpress/wp-json/wp/v2",
+      target: "https://dgs.nfshost.com/wp-json/wp/v2/",
       changeOrigin: true,
       pathRewrite: {
         "^/api/":"/"

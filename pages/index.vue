@@ -17,7 +17,7 @@ export default {
   async asyncData({$axios}) {
     try {
       // let data = await getPage(6);
-      const page = await $axios.$get("/api/pages/6");
+      const page = await $axios.$get("/api/pages/5");
       return {
         page
       }
